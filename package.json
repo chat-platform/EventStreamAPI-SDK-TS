@@ -1,9 +1,9 @@
 {
   "name": "eventstreamapi-sdk-ts",
   "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "description": "A minimal js sdk for the Event Stream API.",
+  "main": "dist/client.js",
+  "types": "dist/client.d.ts",
   "dependencies": {
     "axios": "^0.21.1",
     "jsonwebtoken": "^8.5.1"

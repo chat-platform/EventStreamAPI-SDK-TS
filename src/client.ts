@@ -1,16 +1,15 @@
 import Axios, { AxiosInstance } from 'axios';
 import jwt from 'jsonwebtoken';
 
-import {Event, Invite, Stream, StreamUser, Subscription, Transport, User} from './resources';
+import { Event, Invite, Stream, StreamUser, Subscription, Transport, User } from './resources';
 
-export * from './crypto';
 export * from './resources';
 
 /**
  * A thin client over the API. No caching, no multi request calls, etc.
  * Goal is maximum client support. Other layers can be added on top for common use cases.
  */
-export class Client {
+export default class Client {
   private readonly axios: AxiosInstance;
   public readonly userId: string;
 
