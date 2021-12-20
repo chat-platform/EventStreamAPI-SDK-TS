@@ -60,10 +60,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Client = void 0;
 var axios_1 = __importDefault(require("axios"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-__exportStar(require("./crypto"), exports);
 __exportStar(require("./resources"), exports);
 /**
  * A thin client over the API. No caching, no multi request calls, etc.
@@ -72,8 +70,8 @@ __exportStar(require("./resources"), exports);
 var Client = /** @class */ (function () {
     function Client(accessToken, baseUrl) {
         if (baseUrl === void 0) { baseUrl = 'https://api-bhrsx2hg5q-uc.a.run.app/api/'; }
-        var decodedToken = jsonwebtoken_1.default.decode(accessToken);
-        this.userId = decodedToken['sub'];
+        var decodedToken = jsonwebtoken_1.default.decode(accessToken, { json: true });
+        this.userId = decodedToken.sub;
         this.axios = axios_1.default.create({
             headers: {
                 'Authorization': 'Bearer ' + accessToken
@@ -253,11 +251,11 @@ var Client = /** @class */ (function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.axios.post('subscriptions', __assign({ streamUser: {
-                                id: streamUserId
-                            }, transport: {
-                                name: transport
-                            }, eventTypes: eventTypes }, transportData && { transportData: transportData }))];
+                    case 0: return [4 /*yield*/, this.axios.post('subscriptions', __assign({ streamUser: "streamUsers/" + streamUserId, transport: "transports/" + transport, eventTypes: eventTypes }, transportData && { transportData: transportData }), {
+                            headers: {
+                                'Content-Type': 'application/ld+json'
+                            },
+                        })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -321,5 +319,5 @@ var Client = /** @class */ (function () {
     };
     return Client;
 }());
-exports.Client = Client;
+exports.default = Client;
 //# sourceMappingURL=client.js.map

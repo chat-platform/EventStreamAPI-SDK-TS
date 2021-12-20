@@ -17,8 +17,9 @@ export default class Client {
     accessToken: string,
     baseUrl: string = 'https://api-bhrsx2hg5q-uc.a.run.app/api/'
   ) {
-    const decodedToken = jwt.decode(accessToken);
-    this.userId = decodedToken['sub'];
+    const decodedToken = jwt.decode(accessToken, {json: true});
+
+    this.userId = decodedToken.sub;
     this.axios = Axios.create({
       headers: {
         'Authorization': 'Bearer ' + accessToken
@@ -153,14 +154,14 @@ export default class Client {
       transportData?: any
   ): Promise<Subscription> {
     const response = await this.axios.post<Subscription>('subscriptions', {
-      streamUser: {
-        id: streamUserId
-      },
-      transport: {
-        name: transport
-      },
+      streamUser: `streamUsers/${streamUserId}`,
+      transport: `transports/${transport}`,
       eventTypes: eventTypes,
       ...transportData && { transportData: transportData }
+    }, {
+      headers: {
+        'Content-Type': 'application/ld+json'
+      },
     });
 
     return response.data;

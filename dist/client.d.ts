@@ -1,11 +1,10 @@
 import { Event, Invite, Stream, StreamUser, Subscription, Transport, User } from './resources';
-export * from './crypto';
 export * from './resources';
 /**
  * A thin client over the API. No caching, no multi request calls, etc.
  * Goal is maximum client support. Other layers can be added on top for common use cases.
  */
-export declare class Client {
+export default class Client {
     private readonly axios;
     readonly userId: string;
     constructor(accessToken: string, baseUrl?: string);
