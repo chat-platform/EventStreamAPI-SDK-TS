@@ -132,7 +132,7 @@ class Client {
     getSubscriptions(streamUserId, transport) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.axios.get('subscriptions', {
-                params: Object.assign({ 'streamUser.id': streamUserId }, transport && { 'transport.name': transport })
+                params: Object.assign({ 'streamUser.id': streamUserId }, transport && { 'transport.id': transport })
             });
             return response.data;
         });
@@ -142,7 +142,7 @@ class Client {
             const response = yield this.axios.post('subscriptions', Object.assign({ streamUser: {
                     id: streamUserId
                 }, transport: {
-                    name: transport
+                    id: transport
                 }, eventTypes: eventTypes }, transportData && { transportData: transportData }));
             return response.data;
         });

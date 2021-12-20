@@ -140,7 +140,7 @@ export class Client {
     const response = await this.axios.get<Subscription[]>('subscriptions', {
       params: {
         'streamUser.id': streamUserId,
-        ...transport && { 'transport.name': transport }
+        ...transport && { 'transport.id': transport }
       }
     });
 
@@ -158,7 +158,7 @@ export class Client {
         id: streamUserId
       },
       transport: {
-        name: transport
+        id: transport
       },
       eventTypes: eventTypes,
       ...transportData && { transportData: transportData }
