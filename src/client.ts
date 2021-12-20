@@ -19,7 +19,7 @@ export default class Client {
   ) {
     const decodedToken = jwt.decode(accessToken, {json: true});
 
-    this.userId = decodedToken.sub;
+    this.userId = decodedToken?.sub ?? '';
     this.axios = Axios.create({
       headers: {
         'Authorization': 'Bearer ' + accessToken
