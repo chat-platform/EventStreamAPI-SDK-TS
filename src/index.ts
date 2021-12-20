@@ -9,7 +9,7 @@ export * from './resources';
  * A thin client over the API. No caching, no multi request calls, etc.
  * Goal is maximum client support. Other layers can be added on top for common use cases.
  */
-export default class Client {
+export class Client {
   private readonly axios: AxiosInstance;
   public readonly userId: string;
 
@@ -197,3 +197,5 @@ export default class Client {
     return response.data;
   }
 }
+
+export default Client;

@@ -4,7 +4,7 @@ export * from './resources';
  * A thin client over the API. No caching, no multi request calls, etc.
  * Goal is maximum client support. Other layers can be added on top for common use cases.
  */
-export default class Client {
+export declare class Client {
     private readonly axios;
     readonly userId: string;
     constructor(accessToken: string, baseUrl?: string);
@@ -25,3 +25,4 @@ export default class Client {
     getUsers(): Promise<User[]>;
     getTransports(): Promise<Transport[]>;
 }
+export default Client;
