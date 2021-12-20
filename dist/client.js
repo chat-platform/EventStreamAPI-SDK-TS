@@ -18,7 +18,7 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     o[k2] = m[k];
 }));
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -121,7 +121,7 @@ var Client = /** @class */ (function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.axios.get("streams/" + streamId)];
+                    case 0: return [4 /*yield*/, this.axios.get("streams/".concat(streamId))];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -183,7 +183,7 @@ var Client = /** @class */ (function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.axios.get("streams/" + streamId + "/streamUsers", {
+                    case 0: return [4 /*yield*/, this.axios.get("streams/".concat(streamId, "/streamUsers"), {
                             params: __assign({}, userId && { 'user.id': userId })
                         })];
                     case 1:
@@ -219,7 +219,7 @@ var Client = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.axios.delete("streamUsers/" + streamUserId)];
+                        return [4 /*yield*/, this.axios.delete("streamUsers/".concat(streamUserId))];
                     case 1:
                         _a.sent();
                         return [2 /*return*/, true];
@@ -251,7 +251,7 @@ var Client = /** @class */ (function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.axios.post('subscriptions', __assign({ streamUser: "streamUsers/" + streamUserId, transport: "transports/" + transport, eventTypes: eventTypes }, transportData && { transportData: transportData }), {
+                    case 0: return [4 /*yield*/, this.axios.post('subscriptions', __assign({ streamUser: "streamUsers/".concat(streamUserId), transport: "transports/".concat(transport), eventTypes: eventTypes }, transportData && { transportData: transportData }), {
                             headers: {
                                 'Content-Type': 'application/ld+json'
                             },
@@ -283,7 +283,7 @@ var Client = /** @class */ (function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.axios.get("users/" + userId)];
+                    case 0: return [4 /*yield*/, this.axios.get("users/".concat(userId))];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
