@@ -162,10 +162,6 @@ export class Client {
       },
       eventTypes: eventTypes,
       ...transportData && { transportData: transportData }
-    }, {
-      headers: {
-        'Content-Type': 'application/ld+json'
-      },
     });
 
     return response.data;

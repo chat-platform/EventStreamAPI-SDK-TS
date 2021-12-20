@@ -143,11 +143,7 @@ class Client {
                     id: streamUserId
                 }, transport: {
                     name: transport
-                }, eventTypes: eventTypes }, transportData && { transportData: transportData }), {
-                headers: {
-                    'Content-Type': 'application/ld+json'
-                },
-            });
+                }, eventTypes: eventTypes }, transportData && { transportData: transportData }));
             return response.data;
         });
     }
