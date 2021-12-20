@@ -139,7 +139,11 @@ class Client {
     }
     createSubscription(streamUserId, transport, eventTypes, transportData) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.axios.post('subscriptions', Object.assign({ streamUser: `streamUsers/${streamUserId}`, transport: `transports/${transport}`, eventTypes: eventTypes }, transportData && { transportData: transportData }), {
+            const response = yield this.axios.post('subscriptions', Object.assign({ streamUser: {
+                    id: streamUserId
+                }, transport: {
+                    name: transport
+                }, eventTypes: eventTypes }, transportData && { transportData: transportData }), {
                 headers: {
                     'Content-Type': 'application/ld+json'
                 },

@@ -154,8 +154,12 @@ export class Client {
       transportData?: any
   ): Promise<Subscription> {
     const response = await this.axios.post<Subscription>('subscriptions', {
-      streamUser: `streamUsers/${streamUserId}`,
-      transport: `transports/${transport}`,
+      streamUser: {
+        id: streamUserId
+      },
+      transport: {
+        name: transport
+      },
       eventTypes: eventTypes,
       ...transportData && { transportData: transportData }
     }, {
