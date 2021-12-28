@@ -88,8 +88,12 @@ export class Client {
 
   public async createInvite(
       streamId: string,
-      expiration: Date = new Date('tomorrow')
+      expiration?: Date
   ): Promise<Invite> {
+    if (!expiration) {
+      expiration = new Date();
+      expiration.setDate(expiration.getDate() + 1);
+    }
     const response = await this.axios.post<Invite>('invites', {
       stream: {
         id: streamId

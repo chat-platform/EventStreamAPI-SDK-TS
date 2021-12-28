@@ -87,8 +87,12 @@ class Client {
             return response.data;
         });
     }
-    createInvite(streamId, expiration = new Date('tomorrow')) {
+    createInvite(streamId, expiration) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!expiration) {
+                expiration = new Date();
+                expiration.setDate(expiration.getDate() + 1);
+            }
             const response = yield this.axios.post('invites', {
                 stream: {
                     id: streamId
