@@ -17,6 +17,7 @@ export declare class Client {
     createInvite(streamId: string, expiration?: Date): Promise<Invite>;
     getStreamUsers(streamId: string, userId?: string): Promise<StreamUser[]>;
     createStreamUser(streamId: string, userId: string, inviteId?: string): Promise<StreamUser>;
+    setLastSeenEvent(streamUserId: string, lastSeenEventId: string): Promise<StreamUser>;
     deleteStreamUser(streamUserId: string): Promise<boolean>;
     getSubscriptions(streamUserId: string, transport?: string): Promise<Subscription[]>;
     createSubscription(streamUserId: string, transport: string, eventTypes?: string[], transportData?: any): Promise<Subscription>;

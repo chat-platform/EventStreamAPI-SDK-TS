@@ -122,6 +122,16 @@ class Client {
             return response.data;
         });
     }
+    setLastSeenEvent(streamUserId, lastSeenEventId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.axios.patch(`streamUsers/${streamUserId}`, {
+                lastSeenEvent: {
+                    id: lastSeenEventId
+                }
+            });
+            return response.data;
+        });
+    }
     deleteStreamUser(streamUserId) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

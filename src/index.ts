@@ -130,6 +130,16 @@ export class Client {
     return response.data;
   }
 
+  public async setLastSeenEvent(streamUserId: string, lastSeenEventId: string): Promise<StreamUser> {
+    const response = await this.axios.patch<StreamUser>(`streamUsers/${streamUserId}`, {
+      lastSeenEvent: {
+        id: lastSeenEventId
+      }
+    });
+
+    return response.data;
+  }
+
   public async deleteStreamUser(streamUserId: string): Promise<boolean> {
     try {
       await this.axios.delete(`streamUsers/${streamUserId}`);
