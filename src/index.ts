@@ -186,12 +186,17 @@ export class Client {
   }
 
   public async createEvent(streamId: string, type: string, data?: any): Promise<Event> {
-    const response = await this.axios.post('events', {
+    // Axios likes to not serialize some json, especially when it contains emojis, so we do that manually here.
+    const response = await this.axios.post('events', JSON.stringify({
       stream: {
         id: streamId
       },
       type: type,
       ...data && { eventData: { data: data } }
+    }), {
+      headers: {
+        'Content-Type': 'application/json'
+      }
     });
 
     return response.data;

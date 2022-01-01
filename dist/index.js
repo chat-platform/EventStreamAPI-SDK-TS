@@ -167,9 +167,14 @@ class Client {
     }
     createEvent(streamId, type, data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.axios.post('events', Object.assign({ stream: {
+            // Axios likes to not serialize some json, especially when it contains emojis, so we do that manually here.
+            const response = yield this.axios.post('events', JSON.stringify(Object.assign({ stream: {
                     id: streamId
-                }, type: type }, data && { eventData: { data: data } }));
+                }, type: type }, data && { eventData: { data: data } })), {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
             return response.data;
         });
     }
