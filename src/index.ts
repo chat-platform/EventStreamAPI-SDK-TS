@@ -135,6 +135,10 @@ export class Client {
       lastSeenEvent: {
         id: lastSeenEventId
       }
+    }, {
+      headers: {
+        'Content-Type': 'application/merge-patch+json'
+      }
     });
 
     return response.data;
@@ -189,6 +193,12 @@ export class Client {
       type: type,
       ...data && { eventData: data }
     });
+
+    return response.data;
+  }
+
+  public async getEvent(eventId: string): Promise<Event> {
+    const response = await this.axios.get(`events/${eventId}`);
 
     return response.data;
   }

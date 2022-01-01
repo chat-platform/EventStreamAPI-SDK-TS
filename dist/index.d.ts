@@ -22,6 +22,7 @@ export declare class Client {
     getSubscriptions(streamUserId: string, transport?: string): Promise<Subscription[]>;
     createSubscription(streamUserId: string, transport: string, eventTypes?: string[], transportData?: any): Promise<Subscription>;
     createEvent(streamId: string, type: string, data?: any): Promise<Event>;
+    getEvent(eventId: string): Promise<Event>;
     getUser(userId: string): Promise<User>;
     getUsers(): Promise<User[]>;
     getTransports(): Promise<Transport[]>;

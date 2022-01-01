@@ -128,6 +128,10 @@ class Client {
                 lastSeenEvent: {
                     id: lastSeenEventId
                 }
+            }, {
+                headers: {
+                    'Content-Type': 'application/merge-patch+json'
+                }
             });
             return response.data;
         });
@@ -166,6 +170,12 @@ class Client {
             const response = yield this.axios.post('events', Object.assign({ stream: {
                     id: streamId
                 }, type: type }, data && { eventData: data }));
+            return response.data;
+        });
+    }
+    getEvent(eventId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.axios.get(`events/${eventId}`);
             return response.data;
         });
     }
