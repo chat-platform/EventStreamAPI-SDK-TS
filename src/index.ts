@@ -191,7 +191,7 @@ export class Client {
         id: streamId
       },
       type: type,
-      ...data && { eventData: data }
+      ...data && { eventData: { data: data } }
     });
 
     return response.data;

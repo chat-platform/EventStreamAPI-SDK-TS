@@ -169,7 +169,7 @@ class Client {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.axios.post('events', Object.assign({ stream: {
                     id: streamId
-                }, type: type }, data && { eventData: data }));
+                }, type: type }, data && { eventData: { data: data } }));
             return response.data;
         });
     }
